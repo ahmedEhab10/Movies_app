@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
+import 'package:movies_app/core/routes_manager/app_routes.dart';
 import 'package:movies_app/core/widgets/custom_elevated_button.dart';
 
 class Intro_Screen extends StatelessWidget {
@@ -39,7 +40,12 @@ class Intro_Screen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 30.h),
-                CustomElevatedButton(onPressed: () {}, text: 'Explore Now'),
+                CustomElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.loin_screen);
+                  },
+                  text: 'Explore Now',
+                ),
                 Spacer(),
               ],
             ),
