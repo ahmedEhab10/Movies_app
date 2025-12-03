@@ -1,7 +1,11 @@
+import 'dart:developer';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
+import 'package:movies_app/core/resources/constanst_manager.dart';
 import 'package:movies_app/core/widgets/custom_elevated_button.dart';
 import 'package:movies_app/core/widgets/custom_text_faild.dart';
 
@@ -12,12 +16,39 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
 
           children: [
-            Image.asset('assets/image/app_logo.png', height: 300.h),
+            CarouselSlider(
+              items: ConstanstManager.avatarimages
+                  .map(
+                    (item) => Container(
+                      width: 158,
+                      height: 158,
+                      child: Center(
+                        child: Image.asset(
+                          item,
+                          fit: BoxFit.cover,
+                          width: 300.w,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+              options: CarouselOptions(
+                animateToClosest: true,
+                viewportFraction: 0.5,
+                autoPlay: false,
+                enlargeCenterPage: true,
+                aspectRatio: 2.0,
+                onPageChanged: (index, reason) {
+                  log(index.toString());
+                },
+              ),
+            ),
+            SizedBox(height: 20.h),
 
             CustomTextFaild(hintText: 'Name', icon: Icons.person),
             SizedBox(height: 10.h),

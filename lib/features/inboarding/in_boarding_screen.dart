@@ -137,7 +137,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         onPressed: goNext,
                       ),
                       const SizedBox(height: 12),
-                      BackButtonn(onPressed: goBack),
+                      Visibility(
+                        visible: currentPage != 0,
+                        child: BackButtonn(onPressed: goBack),
+                      ),
                     ],
                   ),
                 ),
