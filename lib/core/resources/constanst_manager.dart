@@ -12,4 +12,11 @@ abstract class ConstanstManager {
     'assets/image/avatar8.png',
     'assets/image/avatar9.png',
   ];
+
+  static List<String> navbaritems = [
+    'assets/svg/home_vector.svg',
+    'assets/svg/search_vector.svg',
+    'assets/svg/explore_vector.svg',
+    'assets/svg/Profiel_vector.svg',
+  ];
 }

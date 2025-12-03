@@ -35,7 +35,12 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.end,
             ),
             SizedBox(height: 40.h),
-            CustomElevatedButton(text: 'Login', onPressed: () {}),
+            CustomElevatedButton(
+              text: 'Login',
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.main_layout);
+              },
+            ),
             SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -10,10 +10,14 @@ class CustomElevatedButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.assetName,
+    this.backgroundColor = ColorsManager.primaryyellow,
+    this.textColor = ColorsManager.primaryblack,
   });
   final String text;
   final void Function()? onPressed;
   final String? assetName;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class CustomElevatedButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 55),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: ColorsManager.primaryyellow,
+        backgroundColor: backgroundColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +41,7 @@ class CustomElevatedButton extends StatelessWidget {
             child: Text(
               text,
               style: GoogleFonts.inter(
-                color: ColorsManager.primaryblack,
+                color: textColor,
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
               ),
