@@ -42,7 +42,7 @@ class Intro_Screen extends StatelessWidget {
                 SizedBox(height: 30.h),
                 CustomElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.loin_screen);
+                    Navigator.pushNamed(context, AppRoutes.onboarding_screen);
                   },
                   text: 'Explore Now',
                 ),

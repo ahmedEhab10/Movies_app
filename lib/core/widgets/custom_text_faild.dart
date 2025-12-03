@@ -27,7 +27,7 @@ class CustomTextFaild extends StatelessWidget {
       ),
       decoration: InputDecoration(
         filled: true,
-        fillColor: const Color(0xFF2C2C2C), // اللون الغامق اللي في الصورة
+        fillColor: const Color(0xFF2C2C2C),
         hintText: hintText,
         hintStyle: GoogleFonts.roboto(
           color: ColorsManager.white,

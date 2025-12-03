@@ -4,6 +4,7 @@ import 'package:movies_app/core/routes_manager/app_routes.dart';
 import 'package:movies_app/features/Auth/Login/presentation/Screen/login_screen.dart';
 import 'package:movies_app/features/Auth/Register/presentation/Screen/Register_screen.dart';
 import 'package:movies_app/features/Splash/splash_screen.dart';
+import 'package:movies_app/features/inboarding/in_boarding_screen.dart';
 import 'package:movies_app/features/intro_screen/intro_screen.dart';
 
 class RoutesManager {
@@ -24,6 +25,10 @@ class RoutesManager {
       case AppRoutes.Register_screen:
         {
           return CupertinoPageRoute(builder: (context) => RegisterScreen());
+        }
+      case AppRoutes.onboarding_screen:
+        {
+          return CupertinoPageRoute(builder: (context) => OnBoardingScreen());
         }
     }
   }
