@@ -38,6 +38,12 @@ dependencies:
   google_fonts: ^6.3.3
   flutter_svg: ^2.2.3
   carousel_slider: ^5.1.1
+  dio: ^5.9.0
+  dartz: ^0.10.1
+  bloc: ^9.1.0
+  shared_preferences: ^2.5.3
+  flutter_bloc: ^9.1.1
+  fluttertoast: ^9.0.0
 
 dev_dependencies:
   flutter_test:

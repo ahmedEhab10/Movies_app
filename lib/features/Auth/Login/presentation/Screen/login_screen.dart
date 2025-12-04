@@ -1,13 +1,42 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/core/Utils/Ui_utils.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
 import 'package:movies_app/core/routes_manager/app_routes.dart';
 import 'package:movies_app/core/widgets/custom_elevated_button.dart';
 import 'package:movies_app/core/widgets/custom_text_faild.dart';
+import 'package:movies_app/features/Auth/Login/presentation/cubit/cubit/login_cubit.dart';
+import 'package:movies_app/features/Auth/data/Models/Login_request.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late TextEditingController emailController, passwordController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +50,14 @@ class LoginScreen extends StatelessWidget {
             Spacer(flex: 1),
             Image.asset('assets/image/app_logo.png', height: 300.h),
 
-            CustomTextFaild(hintText: 'Email', icon: Icons.email),
+            CustomTextFaild(
+              hintText: 'Email',
+              icon: Icons.email,
+              controller: emailController,
+            ),
             SizedBox(height: 20.h),
             CustomTextFaild(
+              controller: passwordController,
               hintText: 'Password',
               icon: Icons.lock,
               suffixicon: Icons.remove_red_eye,
@@ -35,11 +69,35 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.end,
             ),
             SizedBox(height: 40.h),
-            CustomElevatedButton(
-              text: 'Login',
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.main_layout);
+            BlocListener<LoginCubit, LoginState>(
+              listener: (context, state) {
+                if (state is LoginLoading) {
+                  log('state is AuthLoading');
+                  UIUtils.showLoading(context, isDismissible: false);
+                } else if (state is LoginSuccess) {
+                  log('state is AuthSuccess');
+                  UIUtils.hideDialog(context);
+                  UIUtils.showToastMessage(
+                    "Successfully Registration",
+                    Colors.green,
+                  );
+                  Navigator.pushNamed(context, AppRoutes.main_layout);
+                } else if (state is LoginError) {
+                  UIUtils.hideDialog(context);
+                  UIUtils.showToastMessage(state.errormassage, Colors.red);
+                }
               },
+              child: CustomElevatedButton(
+                text: 'Login',
+                onPressed: () {
+                  BlocProvider.of<LoginCubit>(context).loginN(
+                    loginRequest: Login_request(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    ),
+                  );
+                },
+              ),
             ),
             SizedBox(height: 20.h),
             Row(

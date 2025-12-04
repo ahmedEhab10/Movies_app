@@ -20,3 +20,13 @@ abstract class ConstanstManager {
     'assets/svg/Profiel_vector.svg',
   ];
 }
+
+abstract class ApiConstants {
+  static const String baseUrl = 'https://route-movie-apis.vercel.app/';
+  static const String register = 'auth/register';
+  static const String Login = 'auth/login';
+}
+
+abstract class CachConstants {
+  static const String token = 'token';
+}

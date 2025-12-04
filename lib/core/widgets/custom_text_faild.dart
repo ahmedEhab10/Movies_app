@@ -10,15 +10,21 @@ class CustomTextFaild extends StatelessWidget {
     required this.icon,
     this.suffixicon,
     this.obscureText = false,
+    this.controller,
+    this.validator,
   });
   final String? hintText;
   final IconData? icon;
   final IconData? suffixicon;
   final bool obscureText;
+  final TextEditingController? controller;
+  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
+      controller: controller,
       obscureText: obscureText,
       style: GoogleFonts.roboto(
         color: ColorsManager.white,
