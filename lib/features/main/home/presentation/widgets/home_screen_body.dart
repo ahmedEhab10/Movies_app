@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
 import 'package:movies_app/core/resources/constanst_manager.dart';
-import 'package:movies_app/features/main/home/widgets/MovieCarouselItem.dart';
+import 'package:movies_app/features/main/home/presentation/widgets/MovieCarouselItem.dart';
 
 class HomeScreenBody extends StatefulWidget {
   const HomeScreenBody({super.key});
