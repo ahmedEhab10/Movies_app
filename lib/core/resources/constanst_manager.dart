@@ -33,6 +33,8 @@ abstract class ConstanstManager {
 
 abstract class ApiConstants {
   static const String baseUrl = 'https://route-movie-apis.vercel.app/';
+  static const String baseUrl2 = 'https://yts.lt/api/v2/';
+  static const String allMovies = 'list_movies.json';
   static const String register = 'auth/register';
   static const String Login = 'auth/login';
 }

@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/domain/Entities/Move_Entity.dart';
 
 class MovieCarouselItem extends StatelessWidget {
-  final String imagePath;
+  final MovieEntity movie;
 
-  const MovieCarouselItem({super.key, required this.imagePath});
+  const MovieCarouselItem({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +16,31 @@ class MovieCarouselItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              imagePath,
+            child: CachedNetworkImage(
               fit: BoxFit.cover,
-              width: double.infinity,
-              height: 300.h,
+              imageUrl: movie.posterImage,
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) =>
+                  const Center(child: Icon(Icons.error)),
+              imageBuilder: (context, imageProvider) {
+                return Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
             ),
+
+            // Image.asset(
+            //   movie.posterImage,
+            //   fit: BoxFit.cover,
+            //   width: double.infinity,
+            //   height: 300.h,
+            // ),
           ),
 
           Container(
@@ -43,12 +64,12 @@ class MovieCarouselItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(
-                children: const [
-                  Icon(Icons.star, color: Colors.amber, size: 16),
-                  SizedBox(width: 4),
+                children: [
+                  const Icon(Icons.star, color: Colors.amber, size: 16),
+                  const SizedBox(width: 4),
                   Text(
-                    '7.7',
-                    style: TextStyle(
+                    movie.rating.toString(),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),

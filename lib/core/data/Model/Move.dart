@@ -1,4 +1,5 @@
 import 'package:movies_app/core/data/Model/Movies_ressponse.dart';
+import 'package:movies_app/core/domain/Entities/Move_Entity.dart';
 
 class Movies {
   final int? id;
@@ -67,9 +68,9 @@ class Movies {
       titleLong: json['title_long'],
       slug: json['slug'],
       year: json['year'],
-      rating: json['rating'],
+      rating: json['rating']?.toDouble(),
       runtime: json['runtime'],
-      genres: json['genres'].cast<String>(),
+      genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
       summary: json['summary'],
       descriptionFull: json['description_full'],
       synopsis: json['synopsis'],
@@ -91,4 +92,16 @@ class Movies {
       dateUploadedUnix: json['date_uploaded_unix'],
     );
   }
+
+  MovieEntity tomovieEntity() => MovieEntity(
+    id: id ?? 0,
+    title: title ?? '',
+    year: year ?? 0,
+    rating: rating ?? 0.0,
+    runtime: runtime ?? 0,
+    genres: genres ?? [],
+    summary: summary ?? '',
+    posterImage: largeCoverImage ?? '',
+    backgroundImage: backgroundImage ?? '',
+  );
 }

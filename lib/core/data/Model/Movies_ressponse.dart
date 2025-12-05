@@ -1,5 +1,5 @@
 import 'package:movies_app/core/data/Model/Meta_data.dart';
-import 'package:movies_app/core/data/Model/Move.dart';
+
 import 'package:movies_app/core/data/Model/data.dart';
 
 class Movies_ressponse {
