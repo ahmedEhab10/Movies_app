@@ -13,6 +13,16 @@ abstract class ConstanstManager {
     'assets/image/avatar9.png',
   ];
 
+  static List<String> Movies_images = [
+    'assets/image/Move_poser.png',
+    'assets/image/Move_poser2.png',
+    'assets/image/Move_poser3.png',
+    'assets/image/Move_poser4.png',
+    'assets/image/Move_poser5.png',
+    'assets/image/Move_poser6.png',
+    'assets/image/Move_poser7.png',
+  ];
+
   static List<String> navbaritems = [
     'assets/svg/home_vector.svg',
     'assets/svg/search_vector.svg',

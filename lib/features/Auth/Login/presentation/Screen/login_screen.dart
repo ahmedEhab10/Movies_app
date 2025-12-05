@@ -90,12 +90,14 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CustomElevatedButton(
                 text: 'Login',
                 onPressed: () {
-                  BlocProvider.of<LoginCubit>(context).loginN(
-                    loginRequest: Login_request(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    ),
-                  );
+                  // BlocProvider.of<LoginCubit>(context).loginN(
+                  //   loginRequest: Login_request(
+                  //     email: emailController.text,
+                  //     password: passwordController.text,
+                  //   ),
+                  // );
+
+                  Navigator.pushNamed(context, AppRoutes.main_layout);
                 },
               ),
             ),
