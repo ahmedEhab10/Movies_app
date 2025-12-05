@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 354,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/image/Group 7.png"),
+                image: AssetImage("assets/image/Available_Now.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -55,9 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: AssetImage(
-                                  "assets/images/movie$index.jpg",
-                                ),
+                                image: AssetImage("assets/image/Card_film.png"),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -117,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(12),
                           image: DecorationImage(
                             image: AssetImage(
-                              "assets/images/action$index.jpg",
+                              "assets/image/Card_film.png",
                             ), // صور الأكشن
                             fit: BoxFit.cover,
                           ),
