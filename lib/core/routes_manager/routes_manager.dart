@@ -6,7 +6,7 @@ import 'package:movies_app/features/Auth/Register/presentation/Screen/Register_s
 import 'package:movies_app/features/Splash/splash_screen.dart';
 import 'package:movies_app/features/inboarding/in_boarding_screen.dart';
 import 'package:movies_app/features/intro_screen/intro_screen.dart';
-import 'package:movies_app/features/intro_screen/movieDetails.dart';
+import 'package:movies_app/features/main/home/movieDetails.dart';
 import 'package:movies_app/features/main/main_layout.dart';
 
 class RoutesManager {
