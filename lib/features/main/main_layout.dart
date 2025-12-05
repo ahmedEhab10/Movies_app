@@ -5,6 +5,7 @@ import 'package:movies_app/core/resources/Color_Manager.dart';
 import 'package:movies_app/core/resources/constanst_manager.dart';
 import 'package:movies_app/features/main/explor/explor_screen.dart';
 import 'package:movies_app/features/main/home/home_screen.dart';
+import 'package:movies_app/features/main/home/movieDetails.dart';
 import 'package:movies_app/features/main/profile/profile_screen.dart';
 import 'package:movies_app/features/main/search/search_screen.dart';
 
@@ -18,7 +19,7 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   List<Widget> screens = const [
     HomeScreen(key: ValueKey(0)),
-    SearchScreen(key: ValueKey(1)),
+    MovieDetails(key: ValueKey(1)),
     ExplorScreen(key: ValueKey(2)),
     ProfileScreen(key: ValueKey(3)),
   ];

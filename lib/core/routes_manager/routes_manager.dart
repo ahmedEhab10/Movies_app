@@ -38,7 +38,7 @@ class RoutesManager {
         }
       case AppRoutes.moviesDetails:
         {
-          return CupertinoPageRoute(builder: (context) => Moviedetails());
+          return CupertinoPageRoute(builder: (context) => MovieDetails());
         }
     }
   }

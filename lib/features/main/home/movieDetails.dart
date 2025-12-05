@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
 
-
-
-
 class MovieDetails extends StatelessWidget {
-  final String image;
-  final String title;
-  final String year;
-  final double rating;
-  final List<String> screenshots;
+  final String? image;
+  final String? title;
+  final String? year;
+  final double? rating;
+  final List<String>? screenshots;
 
   const MovieDetails({
     super.key,
-    required this.image,
-    required this.title,
-    required this.year,
-    required this.rating,
-    required this.screenshots,
+    this.image,
+    this.title,
+    this.year,
+    this.rating,
+    this.screenshots,
   });
 
   @override
@@ -28,21 +25,25 @@ class MovieDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
-
             Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(
-                  image,
-                  height: 350,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Image.asset(
+                    'assets/image/Move_poser4.png',
+
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
 
                 Container(
-                  height: 350,
                   width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.5,
                   color: ColorsManager.primaryblack.withOpacity(0.45),
                 ),
 
@@ -73,9 +74,8 @@ class MovieDetails extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-
             Text(
-              title,
+              'Titanic',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 24,
@@ -86,17 +86,12 @@ class MovieDetails extends StatelessWidget {
 
             const SizedBox(height: 6),
 
-
             Text(
-              year,
-              style: const TextStyle(
-                color: ColorsManager.white,
-                fontSize: 18,
-              ),
+              '1997, Drama, Romance',
+              style: const TextStyle(color: ColorsManager.white, fontSize: 18),
             ),
 
             const SizedBox(height: 20),
-
 
             Container(
               width: 260,
@@ -118,30 +113,35 @@ class MovieDetails extends StatelessWidget {
 
             const SizedBox(height: 25),
 
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(children: const [
-                  Icon(Icons.favorite, color: ColorsManager.primaryyellow),
-                  SizedBox(width: 5),
-                  Text("15", style: TextStyle(color: ColorsManager.white)),
-                ]),
+                Row(
+                  children: const [
+                    Icon(Icons.favorite, color: ColorsManager.primaryyellow),
+                    SizedBox(width: 5),
+                    Text("15", style: TextStyle(color: ColorsManager.white)),
+                  ],
+                ),
 
-                Row(children: const [
-                  Icon(Icons.access_time, color: ColorsManager.primaryyellow),
-                  SizedBox(width: 5),
-                  Text("90", style: TextStyle(color: ColorsManager.white)),
-                ]),
+                Row(
+                  children: const [
+                    Icon(Icons.access_time, color: ColorsManager.primaryyellow),
+                    SizedBox(width: 5),
+                    Text("90", style: TextStyle(color: ColorsManager.white)),
+                  ],
+                ),
 
-                Row(children: [
-                  const Icon(Icons.star, color: ColorsManager.primaryyellow),
-                  const SizedBox(width: 5),
-                  Text(
-                    rating.toString(),
-                    style: const TextStyle(color: ColorsManager.white),
-                  ),
-                ]),
+                Row(
+                  children: [
+                    const Icon(Icons.star, color: ColorsManager.primaryyellow),
+                    const SizedBox(width: 5),
+                    Text(
+                      rating.toString(),
+                      style: const TextStyle(color: ColorsManager.white),
+                    ),
+                  ],
+                ),
               ],
             ),
 
@@ -165,18 +165,18 @@ class MovieDetails extends StatelessWidget {
 
             const SizedBox(height: 15),
 
-
             SizedBox(
-              height: 120,
+              height: 300,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemCount: screenshots.length,
+                itemCount: 10,
                 separatorBuilder: (_, __) => const SizedBox(width: 12),
                 itemBuilder: (_, index) {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.asset(
-                      screenshots[index],
+                      height: 300,
+                      'assets/image/Move_poser3.png',
                       width: 180,
                       fit: BoxFit.cover,
                     ),
