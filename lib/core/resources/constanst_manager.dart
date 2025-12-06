@@ -37,6 +37,7 @@ abstract class ApiConstants {
   static const String allMovies = 'list_movies.json';
   static const String register = 'auth/register';
   static const String Login = 'auth/login';
+  static const String profile = 'profile';
 }
 
 abstract class CachConstants {

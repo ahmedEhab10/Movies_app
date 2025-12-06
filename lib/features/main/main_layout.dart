@@ -5,7 +5,7 @@ import 'package:movies_app/core/resources/Color_Manager.dart';
 import 'package:movies_app/core/resources/constanst_manager.dart';
 import 'package:movies_app/features/main/explor/explor_screen.dart';
 import 'package:movies_app/features/main/home/presentation/home_screen.dart';
-import 'package:movies_app/features/main/profile/profile_screen.dart';
+import 'package:movies_app/features/main/profile/presentation/profile_screen.dart';
 import 'package:movies_app/features/main/search/search_screen.dart';
 
 class MainLayout extends StatefulWidget {

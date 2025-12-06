@@ -1,3 +1,5 @@
+import 'package:movies_app/features/main/profile/domain/Entities/User_Entity.dart';
+
 class UserData {
   String? email;
   String? password;
@@ -31,19 +33,5 @@ class UserData {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['avaterId'] = this.avaterId;
-    data['_id'] = this.sId;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    return data;
   }
 }

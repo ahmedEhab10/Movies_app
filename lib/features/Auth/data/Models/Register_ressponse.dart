@@ -22,13 +22,4 @@ class Register_ressponse {
         ? new UserData.fromJson(json['data'])
         : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.user_data != null) {
-      data['data'] = this.user_data!.toJson();
-    }
-    return data;
-  }
 }

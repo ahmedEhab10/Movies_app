@@ -1,11 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
+import 'package:movies_app/core/resources/constanst_manager.dart';
 import 'package:movies_app/core/widgets/custom_elevated_button.dart';
+import 'package:movies_app/features/Auth/data/data_source/Local/auth_local_impl_data_source.dart';
+import 'package:movies_app/features/main/profile/domain/Entities/User_Entity.dart';
 
 class information_container extends StatelessWidget {
-  const information_container({super.key});
+  information_container({super.key, required this.userProfileEntity});
+  final AuthLocalImplDataSource authLocalImplDataSource =
+      AuthLocalImplDataSource();
+  UserProfileEntity userProfileEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +31,15 @@ class information_container extends StatelessWidget {
                   Column(
                     children: [
                       Image.asset(
-                        'assets/image/avatar1.png',
+                        ConstanstManager.avatarimages[userProfileEntity
+                            .avaterId!],
                         width: 118.w,
                         height: 118.h,
                         fit: BoxFit.cover,
                       ),
                       SizedBox(height: 10.h),
                       Text(
-                        'Ahmed Ehab',
+                        userProfileEntity.name!,
                         style: GoogleFonts.inter(
                           color: ColorsManager.white,
                           fontSize: 20,
@@ -92,7 +101,10 @@ class information_container extends StatelessWidget {
                     flex: 2,
                     child: CustomElevatedButton(
                       text: 'Edit Profile',
-                      onPressed: () {},
+                      onPressed: () async {
+                        String token = await authLocalImplDataSource.getToken();
+                        log(token);
+                      },
                     ),
                   ),
                   SizedBox(width: 10.w),
