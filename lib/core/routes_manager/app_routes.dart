@@ -6,4 +6,5 @@ class AppRoutes {
   static const String loin_screen = '/loin_screen';
   static const String main_layout = '/main_layout';
   static const String moviesDetails = '/moviesDetails';
+  static const String searchScreen = '/searchScreen';
 }

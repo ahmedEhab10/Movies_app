@@ -8,6 +8,7 @@ import 'package:movies_app/features/inboarding/in_boarding_screen.dart';
 import 'package:movies_app/features/intro_screen/intro_screen.dart';
 import 'package:movies_app/features/main/home/movieDetails.dart';
 import 'package:movies_app/features/main/main_layout.dart';
+import 'package:movies_app/features/main/search/search_screen.dart';
 
 class RoutesManager {
   static Route? router(RouteSettings settings) {
@@ -39,6 +40,10 @@ class RoutesManager {
       case AppRoutes.moviesDetails:
         {
           return CupertinoPageRoute(builder: (context) => Moviedetails());
+        }
+      case AppRoutes.searchScreen:
+        {
+          return CupertinoPageRoute(builder: (context) => SearchScreen());
         }
     }
   }
