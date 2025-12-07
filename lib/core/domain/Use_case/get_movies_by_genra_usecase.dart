@@ -4,7 +4,7 @@ import 'package:movies_app/core/domain/repository/move_repo.dart';
 
 class GetMoviesByGenraUsecase {
   final MoveRepo moveRepo;
-  GetMoviesByGenraUsecase(this.moveRepo);
+  GetMoviesByGenraUsecase({required this.moveRepo});
 
   Future<Either<String, List<MovieEntity>>> call(String genre) {
     return moveRepo.getMoviesbygenre(genre: genre);

@@ -12,6 +12,26 @@ abstract class ConstanstManager {
     'assets/image/avatar8.png',
     'assets/image/avatar9.png',
   ];
+  static List<String> Genres = [
+    'Documentary',
+    'Comedy',
+    'Romance',
+    'Drama',
+    'Crime',
+    'Biography',
+    'Action',
+    'Animation',
+    'History',
+    'War',
+    'Mystery',
+    'Thriller',
+    'Adventure',
+    'Family',
+    'Sci-Fi',
+    'Fantasy',
+    'Horror',
+    'Adventure',
+  ];
 
   static List<String> Movies_images = [
     'assets/image/Move_poser.png',

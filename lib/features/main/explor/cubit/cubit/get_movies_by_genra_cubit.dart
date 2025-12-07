@@ -11,7 +11,7 @@ class GetMoviesByGenraCubit extends Cubit<GetMoviesByGenraState> {
   GetMoviesByGenraCubit({required this.getMoviesByGenraUsecase})
     : super(GetMoviesByGenraInitial());
 
-  Future<void> getMovies({String? genre}) async {
+  Future<void> getbygenraMovies({String? genre}) async {
     emit(GetMoviesByGenraLoading());
     var result = await getMoviesByGenraUsecase.call(genre!);
     result.fold(
