@@ -6,7 +6,7 @@ import 'package:movies_app/core/resources/constanst_manager.dart';
 import 'package:movies_app/features/main/explor/presentation/explor_screen.dart';
 import 'package:movies_app/features/main/home/presentation/home_screen.dart';
 import 'package:movies_app/features/main/profile/presentation/profile_screen.dart';
-import 'package:movies_app/features/main/search/search_screen.dart';
+import 'package:movies_app/features/main/search/presentation/search_screen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});

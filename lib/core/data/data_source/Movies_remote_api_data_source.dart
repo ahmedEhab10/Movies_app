@@ -10,9 +10,12 @@ class MoviesRemoteApiDataSource implements MoviesRemoteDataSource {
   Dio dio = Dio(BaseOptions(baseUrl: ApiConstants.baseUrl2));
   Dio dio2 = Dio(BaseOptions(baseUrl: ApiConstants.baseUrl));
   @override
-  Future<Movies_ressponse> getMovies() async {
+  Future<Movies_ressponse> getMovies([int? limit]) async {
     try {
-      final response = await dio.get(ApiConstants.allMovies);
+      final response = await dio.get(
+        ApiConstants.allMovies,
+        queryParameters: {"limit": limit},
+      );
 
       return Movies_ressponse.fromJson(response.data);
     } catch (e) {

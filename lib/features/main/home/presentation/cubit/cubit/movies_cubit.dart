@@ -10,9 +10,9 @@ class MoviesCubit extends Cubit<MoviesState> {
   MoviesCubit({required this.getMoviesUsecase}) : super(MoviesInitial());
   GetMoviesUsecase getMoviesUsecase;
 
-  Future<void> getMovies() async {
+  Future<void> getMovies([int? limit]) async {
     emit(MoviesLoading());
-    var result = await getMoviesUsecase.call();
+    var result = await getMoviesUsecase.call(limit);
     result.fold(
       (errormassage) => emit(MoviesError(ErrorMessage: errormassage)),
       (moves) => emit(MoviesSuccess(movies: moves)),

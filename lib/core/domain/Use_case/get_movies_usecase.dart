@@ -6,7 +6,7 @@ class GetMoviesUsecase {
   MoveRepo moveRepo;
   GetMoviesUsecase({required this.moveRepo});
 
-  Future<Either<String, List<MovieEntity>>> call() {
-    return moveRepo.getMovies();
+  Future<Either<String, List<MovieEntity>>> call([int? limit]) {
+    return moveRepo.getMovies(limit);
   }
 }

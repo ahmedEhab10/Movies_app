@@ -44,7 +44,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           moviesRemoteDataSource: MoviesRemoteApiDataSource(),
         ),
       ),
-    )..getMovies();
+    )..getMovies(10);
 
     genraCubit = GetMoviesByGenraCubit(
       getMoviesByGenraUsecase: GetMoviesByGenraUsecase(

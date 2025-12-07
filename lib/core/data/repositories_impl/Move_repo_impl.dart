@@ -11,9 +11,9 @@ class MoveRepoImpl implements MoveRepo {
   MoviesRemoteDataSource moviesRemoteDataSource;
   MoveRepoImpl({required this.moviesRemoteDataSource});
   @override
-  Future<Either<String, List<MovieEntity>>> getMovies() async {
+  Future<Either<String, List<MovieEntity>>> getMovies([int? limit]) async {
     try {
-      final result = await moviesRemoteDataSource.getMovies();
+      final result = await moviesRemoteDataSource.getMovies(limit);
       return Right(
         result.data!.movies!.map((move) => move.tomovieEntity()).toList(),
       );
