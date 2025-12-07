@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,8 +9,9 @@ import 'package:movies_app/core/cubit/cubit/add_to_favorite_cubit.dart';
 import 'package:movies_app/core/domain/Entities/Move_Entity.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
 import 'package:movies_app/core/widgets/custom_elevated_button.dart';
-import 'package:movies_app/features/Details_screen/widgets/cast_continar.dart';
-import 'package:movies_app/features/Details_screen/widgets/genreItem.dart';
+import 'package:movies_app/features/Details_screen/presentation/cubit/cubit/suggestions_cubit.dart';
+import 'package:movies_app/features/Details_screen/presentation/widgets/cast_continar.dart';
+import 'package:movies_app/features/Details_screen/presentation/widgets/genreItem.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.movie});
@@ -126,7 +128,7 @@ class DetailsScreen extends StatelessWidget {
                             Navigator.pop(context);
                           },
                           icon: const Icon(
-                            Icons.arrow_back_ios,
+                            Icons.arrow_back,
                             color: Colors.white,
                           ),
                         ),
@@ -150,7 +152,9 @@ class DetailsScreen extends StatelessWidget {
                   children: [
                     CustomElevatedButton(
                       text: 'watch',
-                      onPressed: () {},
+                      onPressed: () {
+                        log(movie.id.toString());
+                      },
                       backgroundColor: ColorsManager.red,
                       textColor: Colors.white,
                     ),
@@ -237,6 +241,72 @@ class DetailsScreen extends StatelessWidget {
                       textAlign: TextAlign.start,
                     ),
                     SizedBox(height: 10.h),
+                    Text(
+                      'Similar',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        color: ColorsManager.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                    BlocBuilder<SuggestionsCubit, SuggestionsState>(
+                      builder: (context, state) {
+                        if (state is SuggestionsLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (state is SuggestionsError) {
+                          return Center(
+                            child: Text(
+                              state.message,
+                              style: TextStyle(color: ColorsManager.white),
+                            ),
+                          );
+                        }
+
+                        if (state is SuggestionsSuccess) {
+                          return SizedBox(
+                            height: 200.h,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.movies.length,
+                              itemBuilder: (context, index) {
+                                final movie = state.movies[index];
+
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: CachedNetworkImage(
+                                      imageUrl: movie.mediumCoverImage ?? '',
+                                      width: 120,
+                                      height: 180,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                      errorWidget: (context, url, error) =>
+                                          Image.asset(
+                                            'assets/image/Move_poser.png',
+                                            width: 120,
+                                            height: 180,
+                                            fit: BoxFit.cover,
+                                          ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        }
+
+                        return Container();
+                      },
+                    ),
                     Text(
                       'cast',
                       style: GoogleFonts.inter(

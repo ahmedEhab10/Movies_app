@@ -75,4 +75,18 @@ class MoviesRemoteApiDataSource implements MoviesRemoteDataSource {
       throw RemoteAppException(message: e.message ?? "Unexpected Error");
     }
   }
+
+  @override
+  Future<Movies_ressponse> getMovieSuggestions({required int moveid}) async {
+    try {
+      final response = await dio.get(
+        ApiConstants.suggestions,
+        queryParameters: {'movie_id': moveid},
+      );
+
+      return Movies_ressponse.fromJson(response.data);
+    } catch (e) {
+      throw RemoteAppException(message: 'Failed to load suggestions');
+    }
+  }
 }

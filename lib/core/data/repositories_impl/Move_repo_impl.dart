@@ -53,4 +53,20 @@ class MoveRepoImpl implements MoveRepo {
       return Left(e.message);
     }
   }
+
+  @override
+  Future<Either<String, List<MovieEntity>>> getSuggestions({
+    required int movieId,
+  }) async {
+    try {
+      final result = await moviesRemoteDataSource.getMovieSuggestions(
+        moveid: movieId,
+      );
+      return Right(
+        result.data!.movies!.map((move) => move.tomovieEntity()).toList(),
+      );
+    } on RemoteAppException catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

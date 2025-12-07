@@ -103,5 +103,6 @@ class Movies {
     summary: summary ?? '',
     posterImage: largeCoverImage ?? '',
     backgroundImage: backgroundImage ?? '',
+    mediumCoverImage: mediumCoverImage ?? '',
   );
 }

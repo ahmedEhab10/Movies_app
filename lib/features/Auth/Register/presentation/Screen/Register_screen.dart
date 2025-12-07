@@ -185,7 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             email: emailController.text,
                             password: passwordController.text,
                             confirmPassword: confirmpasswordController.text,
-                            phone: phoneController.text,
+                            phone: "+2${phoneController.text}",
                             avaterId: selectedImage,
                           ),
                         );

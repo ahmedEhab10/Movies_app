@@ -6,12 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/data/data_source/Movies_remote_api_data_source.dart';
 import 'package:movies_app/core/data/repositories_impl/Move_repo_impl.dart';
+import 'package:movies_app/core/domain/Use_case/GetMovieSuggestionsUsecase%20.dart';
 import 'package:movies_app/core/domain/Use_case/get_movies_by_genra_usecase.dart';
 import 'package:movies_app/core/domain/Use_case/get_movies_usecase.dart';
 import 'package:movies_app/core/helper/helper_function.dart';
 import 'package:movies_app/core/resources/Color_Manager.dart';
 import 'package:movies_app/core/resources/constanst_manager.dart';
 import 'package:movies_app/features/Auth/See_More_Scree.dart';
+import 'package:movies_app/features/Details_screen/Details_screen.dart';
+import 'package:movies_app/features/Details_screen/presentation/cubit/cubit/suggestions_cubit.dart';
 
 import 'package:movies_app/features/main/explor/cubit/cubit/get_movies_by_genra_cubit.dart';
 import 'package:movies_app/features/main/home/presentation/cubit/cubit/movies_cubit.dart';
@@ -214,47 +217,68 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
 
                       SizedBox(
                         height: 220.h,
-                        child:
-                            BlocBuilder<
-                              GetMoviesByGenraCubit,
-                              GetMoviesByGenraState
-                            >(
-                              builder: (context, state) {
-                                if (state is GetMoviesByGenraLoading) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
+                        child: BlocBuilder<GetMoviesByGenraCubit, GetMoviesByGenraState>(
+                          builder: (context, state) {
+                            if (state is GetMoviesByGenraLoading) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
 
-                                if (state is GetMoviesByGenraSuccess) {
-                                  return ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: 10,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0,
+                            if (state is GetMoviesByGenraSuccess) {
+                              return ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 10,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0,
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => BlocProvider(
+                                                create: (context) =>
+                                                    SuggestionsCubit(
+                                                      usecase: GetMovieSuggestionsUsecase(
+                                                        moveRepo: MoveRepoImpl(
+                                                          moviesRemoteDataSource:
+                                                              MoviesRemoteApiDataSource(),
+                                                        ),
+                                                      ),
+                                                    )..getSuggestions(
+                                                      movieId: state
+                                                          .movies[index]
+                                                          .id,
+                                                    ),
+                                                child: DetailsScreen(
+                                                  movie: state.movies[index],
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Image.network(
+                                          state.movies[index].posterImage,
                                         ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                            20,
-                                          ),
-                                          child: Image.network(
-                                            state.movies[index].posterImage,
-                                          ),
-                                        ),
-                                      );
-                                    },
+                                      ),
+                                    ),
                                   );
-                                }
+                                },
+                              );
+                            }
 
-                                if (state is GetMoviesByGenraError) {
-                                  return Center(child: Text(state.message));
-                                }
+                            if (state is GetMoviesByGenraError) {
+                              return Center(child: Text(state.message));
+                            }
 
-                                return const SizedBox();
-                              },
-                            ),
+                            return const SizedBox();
+                          },
+                        ),
                       ),
                     ],
                   ),

@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Successfully Registration",
                     Colors.green,
                   );
-                  // Navigator.pushNamed(context, AppRoutes.main_layout);
+                  Navigator.pushNamed(context, AppRoutes.main_layout);
                 } else if (state is LoginError) {
                   UIUtils.hideDialog(context);
                   UIUtils.showToastMessage(state.errormassage, Colors.red);
@@ -90,14 +90,12 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CustomElevatedButton(
                 text: 'Login',
                 onPressed: () {
-                  // BlocProvider.of<LoginCubit>(context).loginN(
-                  //   loginRequest: Login_request(
-                  //     email: emailController.text,
-                  //     password: passwordController.text,
-                  //   ),
-                  // );
-
-                  Navigator.pushNamed(context, AppRoutes.main_layout);
+                  BlocProvider.of<LoginCubit>(context).loginN(
+                    loginRequest: Login_request(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    ),
+                  );
                 },
               ),
             ),

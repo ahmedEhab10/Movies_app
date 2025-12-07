@@ -8,6 +8,7 @@ class MovieEntity {
   final String summary;
   final String posterImage;
   final String backgroundImage;
+  final String? mediumCoverImage;
 
   const MovieEntity({
     required this.id,
@@ -19,5 +20,6 @@ class MovieEntity {
     required this.summary,
     required this.posterImage,
     required this.backgroundImage,
+    this.mediumCoverImage,
   });
 }

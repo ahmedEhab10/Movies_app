@@ -9,4 +9,7 @@ abstract class MoveRepo {
   Future<Either<String, FavoriteMovieModel>> addToFavorite({
     required AddToFavoriteRequest request,
   });
+  Future<Either<String, List<MovieEntity>>> getSuggestions({
+    required int movieId,
+  });
 }

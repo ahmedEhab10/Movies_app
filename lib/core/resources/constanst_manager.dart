@@ -58,6 +58,7 @@ abstract class ApiConstants {
   static const String Login = 'auth/login';
   static const String profile = 'profile';
   static const String addtofavorites = 'favorites/add';
+  static const String suggestions = 'movie_suggestions.json';
 }
 
 abstract class CachConstants {

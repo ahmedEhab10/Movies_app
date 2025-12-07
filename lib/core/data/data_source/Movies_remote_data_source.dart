@@ -10,4 +10,5 @@ abstract class MoviesRemoteDataSource {
     required AddToFavoriteRequest request,
     required String token,
   });
+  Future<Movies_ressponse> getMovieSuggestions({required int moveid});
 }

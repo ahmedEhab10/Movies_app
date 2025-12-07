@@ -1,8 +1,15 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/data/data_source/Movies_remote_api_data_source.dart';
+import 'package:movies_app/core/data/repositories_impl/Move_repo_impl.dart';
 import 'package:movies_app/core/domain/Entities/Move_Entity.dart';
+import 'package:movies_app/core/domain/Use_case/GetMovieSuggestionsUsecase%20.dart';
 import 'package:movies_app/features/Details_screen/Details_screen.dart';
+import 'package:movies_app/features/Details_screen/presentation/cubit/cubit/suggestions_cubit.dart';
 
 class MovieCarouselItem extends StatelessWidget {
   final MovieEntity movie;
@@ -15,10 +22,20 @@ class MovieCarouselItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: GestureDetector(
         onTap: () {
+          log(movie.id.toString());
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailsScreen(movie: movie),
+              builder: (context) => BlocProvider(
+                create: (context) => SuggestionsCubit(
+                  usecase: GetMovieSuggestionsUsecase(
+                    moveRepo: MoveRepoImpl(
+                      moviesRemoteDataSource: MoviesRemoteApiDataSource(),
+                    ),
+                  ),
+                )..getSuggestions(movieId: movie.id),
+                child: DetailsScreen(movie: movie),
+              ),
             ),
           );
         },
