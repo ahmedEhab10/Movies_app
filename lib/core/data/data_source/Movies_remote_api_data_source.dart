@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:movies_app/core/Errors/app_exception.dart';
+import 'package:movies_app/core/data/Model/AddToFavoriteRequest.dart';
 import 'package:movies_app/core/data/Model/Movies_ressponse.dart';
+import 'package:movies_app/core/data/Model/add_to_favorite_response.dart';
 import 'package:movies_app/core/data/data_source/Movies_remote_data_source.dart';
 import 'package:movies_app/core/resources/constanst_manager.dart';
 
 class MoviesRemoteApiDataSource implements MoviesRemoteDataSource {
   Dio dio = Dio(BaseOptions(baseUrl: ApiConstants.baseUrl2));
+  Dio dio2 = Dio(BaseOptions(baseUrl: ApiConstants.baseUrl));
   @override
   Future<Movies_ressponse> getMovies() async {
     try {
@@ -44,6 +47,29 @@ class MoviesRemoteApiDataSource implements MoviesRemoteDataSource {
       }
 
       throw RemoteAppException(message: errorMessage);
+    }
+  }
+
+  @override
+  Future<AddToFavoriteResponse> addToFavorite({
+    required AddToFavoriteRequest request,
+    required String token,
+  }) async {
+    try {
+      final response = await dio2.post(
+        ApiConstants.addtofavorites,
+        data: request.toJson(),
+        options: Options(
+          headers: {
+            "Authorization": "Bearer $token",
+            "Content-Type": "application/json",
+          },
+        ),
+      );
+
+      return AddToFavoriteResponse.fromJson(response.data);
+    } on DioException catch (e) {
+      throw RemoteAppException(message: e.message ?? "Unexpected Error");
     }
   }
 }
