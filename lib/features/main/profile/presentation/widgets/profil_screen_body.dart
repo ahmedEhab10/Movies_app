@@ -4,12 +4,21 @@ import 'package:movies_app/features/main/profile/data/data_source/Remote/get_pro
 import 'package:movies_app/features/main/profile/data/repository_impl/get_profile_repo_impl.dart';
 import 'package:movies_app/features/main/profile/domain/Use_case/get_profile_usecase.dart';
 import 'package:movies_app/features/main/profile/presentation/Cubit/cubit/profile_cubit.dart';
+import 'package:movies_app/features/main/profile/presentation/widgets/History_screen.dart';
 
 import 'package:movies_app/features/main/profile/presentation/widgets/information_container.dart';
+import 'package:movies_app/features/main/profile/presentation/widgets/watch_list_screen.dart';
 
-class ProfilScreenBody extends StatelessWidget {
+class ProfilScreenBody extends StatefulWidget {
   const ProfilScreenBody({super.key});
 
+  @override
+  State<ProfilScreenBody> createState() => _ProfilScreenBodyState();
+}
+
+class _ProfilScreenBodyState extends State<ProfilScreenBody> {
+  int pagenumber = 0;
+  List<Widget> pages = [WatchListScreen(), HistoryScreen()];
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -33,7 +42,13 @@ class ProfilScreenBody extends StatelessWidget {
               children: [
                 information_container(
                   userProfileEntity: state.userProfileEntity,
+                  onNumberReceived: (int p1) {
+                    setState(() {
+                      pagenumber = p1;
+                    });
+                  },
                 ),
+                Expanded(child: pages[pagenumber]),
               ],
             );
           }

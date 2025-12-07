@@ -34,7 +34,6 @@ abstract class ConstanstManager {
   ];
 
   static List<String> Movies_images = [
-    'assets/image/Move_poser.png',
     'assets/image/Move_poser2.png',
     'assets/image/Move_poser3.png',
     'assets/image/Move_poser4.png',

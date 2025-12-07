@@ -14,4 +14,10 @@ class AuthLocalImplDataSource implements AuthLocalDataSource {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString(CachConstants.token, token);
   }
+
+  @override
+  Future<void> deleteToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(CachConstants.token);
+  }
 }
