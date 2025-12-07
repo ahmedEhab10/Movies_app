@@ -24,4 +24,26 @@ class MoviesRemoteApiDataSource implements MoviesRemoteDataSource {
       throw RemoteAppException(message: errorMessage);
     }
   }
+
+  @override
+  Future<Movies_ressponse> getMoviesBygenre({String? genre}) async {
+    try {
+      final response = await dio.get(
+        ApiConstants.allMovies,
+        queryParameters: {"genre": genre},
+      );
+
+      return Movies_ressponse.fromJson(response.data);
+    } catch (e) {
+      String? errorMessage;
+
+      if (e is DioException) {
+        errorMessage = e.message ?? "Unexpected Error, Please try again";
+      } else {
+        errorMessage = "Unexpected Error, Please try again";
+      }
+
+      throw RemoteAppException(message: errorMessage);
+    }
+  }
 }

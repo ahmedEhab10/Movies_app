@@ -18,4 +18,20 @@ class MoveRepoImpl implements MoveRepo {
       return Left(e.toString());
     }
   }
+
+  @override
+  Future<Either<String, List<MovieEntity>>> getMoviesbygenre({
+    String? genre,
+  }) async {
+    try {
+      final result = await moviesRemoteDataSource.getMoviesBygenre(
+        genre: genre,
+      );
+      return Right(
+        result.data!.movies!.map((move) => move.tomovieEntity()).toList(),
+      );
+    } on RemoteAppException catch (e) {
+      return Left(e.toString());
+    }
+  }
 }
