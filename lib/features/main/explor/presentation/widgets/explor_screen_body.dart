@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/resources/constanst_manager.dart';
 import 'package:movies_app/features/main/explor/cubit/cubit/get_movies_by_genra_cubit.dart';
-import 'package:movies_app/features/main/explor/presentation/widgets/Move_item.dart';
+import 'package:movies_app/core/widgets/Move_item.dart';
 import 'package:movies_app/features/main/explor/presentation/widgets/genra_item.dart';
 
 class ExplorScreenBody extends StatefulWidget {
